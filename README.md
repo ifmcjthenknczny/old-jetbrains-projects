@@ -14,9 +14,7 @@
 ## General info
 > Simple Search Engine (simpleSearchEngine.kt)
 
-I finished 13 hours of course and get to know a lot of features of Kotlin, developing search engine with three options of search: ALL (result must have all phrases from query) ANY (any word from query) or NONE (cannot have words from query). This app reads list of people from file to List, indexes every seperate word as key in MutableMap, which values are indexes of List where this word is present. One of the features is simple menu with written input as well.
-In words of authors of this project:
-In this project you will create your own search engine, though it probably won’t compete with Google. Yours will be a simple search engine that processes a limited collection of data and searches it for a word or a phrase. It’ll be simple but cool.
+With over 13 hours I get to know a lot of features of Kotlin, developing search engine indexing imported text file, along with three options of searching.
 
 ## Screenshots
 ![Example screenshot](./img/screen.png)
@@ -34,9 +32,9 @@ Main function of this piece of code takes source path to normal text file. It wa
 > Simple Search Engine (simpleSearchEngine.kt)
 
 * Read data from text file
-* Mapping single words to lines where they are in text file
+* Mapping single words to lines indexes where they are in text file
 * Simple user menu
-* Search options ALL, ANY, NONE
+* Search options ALL (result must have all phrases from query), ANY (any word from query), NONE (cannot have words from query)
 * Printing results of search
 * Printing all available data
 
