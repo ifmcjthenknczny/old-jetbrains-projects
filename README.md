@@ -14,7 +14,7 @@
 ## General info
 > Simple Search Engine (simpleSearchEngine.kt)
 
-With over 13 hours I get to know a lot of features of Kotlin, developing search engine indexing imported text file, along with three options of searching.
+With over 13 hours in front of IDE, I've got to know a lot of features of Kotlin - developing search engine indexing over imported text file, with three options of searching.
 
 ## Screenshots
 ![Example screenshot](./img/screen.png)
@@ -26,7 +26,8 @@ With over 13 hours I get to know a lot of features of Kotlin, developing search 
 ## Setup
 > Simple Search Engine (simpleSearchEngine.kt)
 
-Main function of this piece of code takes source path to normal text file. It was succesfully compiled and run in IntelliJ IDEA 2019.3.4.
+Main function of this piece of code takes as an argument String: source path to normal text file.
+Code was succesfully compiled and run in IntelliJ IDEA 2019.3.4.
 
 ## Features
 > Simple Search Engine (simpleSearchEngine.kt)
