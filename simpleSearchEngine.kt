@@ -1,22 +1,57 @@
-// https://hyperskill.org/projects/89/stages/498/implement
-
 package search
 import java.util.Scanner
 import java.io.File
 
-fun search(dict: MutableMap<String,MutableList<Int>>, people: List<String>, query: String): Boolean {
-
-    if (dict.containsKey(query)) {
-        val foundNumber = dict[query]!!.size
-        println("$foundNumber persons found:")
-        for (value in dict[query]!!) {
+fun printResults(foundCandidates: MutableSet<Int>, people: List<String>) {
+    if (foundCandidates.size == 0) {
+        println("No matching people found.")
+    } else {
+        val sizeOfMutableSet = foundCandidates.size
+        println("$sizeOfMutableSet persons found:")
+        for (value in foundCandidates) {
             println(people[value])
         }
-        return true
-    } else {
-        println("No matching people found.")
-        return false
     }
+}
+
+fun search(dict: MutableMap<String,MutableList<Int>>, people: List<String>, query: String, strategy: String) {
+    val splittedQuery = query.split(" ")
+    var foundCandidates = mutableSetOf<Int>()
+    val setToSearchBy: MutableSet<Int> = dict.values.flatten().toMutableSet()
+
+    when (strategy) {
+        "ANY" -> {
+            for (word in splittedQuery) {
+                if (dict.containsKey(word)) {
+                    foundCandidates.addAll(dict[word]!!)
+                }
+            }
+        }
+        "ALL" -> {
+            foundCandidates = dict.values.flatten().toMutableSet()
+            for (word in splittedQuery) {
+                if (dict.containsKey(word)) {
+                    for (n in setToSearchBy) {
+                        if (!dict[word]!!.contains(n)) {
+                            foundCandidates.remove(n)
+                        }
+                    }
+                }
+            }
+        }
+        "NONE" -> {
+            foundCandidates = dict.values.flatten().toMutableSet()
+            for (word in splittedQuery) {
+                    for (n in setToSearchBy) {
+                        if (dict[word]!!.contains(n)) {
+                            foundCandidates.remove(n)
+                        }
+                    }
+                }
+            }
+        }
+
+    printResults(foundCandidates, people)
 }
 
 fun printAll(people: List<String>) {
@@ -47,20 +82,6 @@ fun main(data: Array<String>) {
     val people = File(data[1]).readLines()
     val dict = mapData(people)
 
-    /*println("Enter the number of people:")
-    val howManyPeople = scan.nextLine().toInt()
-    val people: Array<String?> = arrayOfNulls(howManyPeople)
-
-    println("Enter all people:")
-    for (i in people.indices) people[i] = scan.nextLine()!!
-
-    println("\nEnter number of search queries:")
-    val howManyQueries = scan.nextLine().toInt()
-
-    repeat (howManyQueries) {
-
-    }*/
-
     mainLoop@ while (scan.hasNext()) {
         println("\n=== Menu ===")
         println("1. Find a person")
@@ -73,9 +94,11 @@ fun main(data: Array<String>) {
                 break@mainLoop
             }
             1 -> {
+                println("Select a matching strategy: ALL, ANY, NONE")
+                val strategy = scan.nextLine()!!.toUpperCase()
                 println("Enter a name or email to search all suitable people.")
                 val query = scan.nextLine()!!.toLowerCase()
-                search(dict, people, query)
+                search(dict, people, query, strategy)
             }
             2 -> printAll(people)
             else -> {
