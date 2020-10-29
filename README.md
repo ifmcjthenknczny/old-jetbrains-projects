@@ -3,7 +3,6 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
@@ -14,15 +13,11 @@
 ## General info
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt) (difficulty level: Hard)
 
-I've got to know a lot of features of Kotlin - developing search engine indexing over imported text file, with three options of searching.
+I've got to know a lot of basic features of Kotlin - developing search engine indexing over imported text file, with three options of searching.
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt) (difficulty level: Challenging)
 
-This project is focused on manipulating images with the use of Kotlin. Right now I have succesfully created simple image of declared size and inverted colors of imported photo with parameters of input and output declared by command line.
-
-## Screenshots
-![Example Simple Search Engine screenshot](./img/screenSearch.png)
-![Example Seam Carving screenshot](./img/screenSeam.png)
+This project is focused on manipulating images with the use of Kotlin. It is based on Node and Photo classes, finds the lowest energy seam (line from the edge to edge on the other side of a picture) using implemented Dijkstra algorithm and deletes a given amount of horizontal and vertical seams, trimming the image. Finishing it needed a lot of research about Kotlin by myself.
 
 ## Technologies
 * Kotlin: version 1.3.72-release-468 (JRE 14.0.1+7)
@@ -36,7 +31,7 @@ Main function of this piece of code takes as an argument String: source path to 
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
 
-Code can be run from command line with arguments -in <input file path> and -out <output file path>.
+Code can be run from command line with arguments -in <relative input file path>, -out <relative output file path>, -width <vertical seams to delete> and -height <horizontal seams to delete>.
 
 ## Features
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
@@ -50,15 +45,16 @@ Code can be run from command line with arguments -in <input file path> and -out 
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
 
-* Create a black image with two red crossed lines of given size and save it at given path
-* Inverse colors of given photo file and save it at given path
+* Importing and exporting picture.
+* Finding energy of pixels as well as horizontal and vertical seams with lowest energy.
+* Trimming the picture by given amount of vertical / horizontal (by transposing the image) lines.
 
 ## Status
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
-Project is: _finished_
+* Project is: _finished_
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
-Project is: _in progress_
+* Project is: _finished_
 
 ## Inspiration
 Willingness to get to know another programming language and to find more challenging job, more amount of free time and JetBrains discount until the end of year (should I also mention that last two are result of COVID?).
