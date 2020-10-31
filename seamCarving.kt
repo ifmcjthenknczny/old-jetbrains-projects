@@ -28,9 +28,11 @@ data class Node(val x: Int, val y: Int) : Comparable<Node> {
     fun findEdges(width: Int, height: Int) {
         // indexes of nodes for photo with empty rows
         edges = when {
-            newx == 0 && newy == 0 -> listOf(Node(newx + 1, newy), Node(newx, newy + 1), Node(newx + 1, newy + 1))
+            newx == 0 && newy == 0 -> listOf(Node(newx + 1, newy), Node(newx, newy + 1),
+                    Node(newx + 1, newy + 1))
             newx == width - 1 && newy == 0 -> listOf(Node(newx - 1, newy + 1), Node(newx, newy + 1))
-            newy == 0 -> listOf(Node(newx + 1, newy), Node(newx - 1, newy + 1), Node(newx, newy + 1), Node(newx + 1, newy + 1))
+            newy == 0 -> listOf(Node(newx + 1, newy), Node(newx - 1, newy + 1), Node(newx, newy + 1),
+                    Node(newx + 1, newy + 1))
             newy == height - 1 && newx == width - 1 -> listOf<Node>()
             newy == height - 1 -> listOf(Node(newx + 1, newy))
             newx == 0 -> listOf(Node(newx, newy + 1), Node(newx + 1, newy + 1))
@@ -40,12 +42,12 @@ data class Node(val x: Int, val y: Int) : Comparable<Node> {
     }
 }
 
-class Photo(var image: BufferedImage) {
-    var width = image.width
-    var height = image.height
-    var transposed = false
+class Photo(private var image: BufferedImage) {
+    private var width = image.width
+    private var height = image.height
+    private var transposed = false
 
-    var nodes = MutableList(height) { MutableList<Node>(width) { Node(0, 0) } }
+    private var nodes = MutableList(height) { MutableList(width) { Node(0, 0) } }
 
     init {
         for (y in 0 until height) {
@@ -147,19 +149,9 @@ class Photo(var image: BufferedImage) {
         return seam
     }
 
-    fun seamToPhoto(seam: MutableList<Node>) {
-        width = image.width
-        height = image.height
-        val red = 65536 * 255
-        for (pixel in seam) {
-            image.setRGB(pixel.x, pixel.y, red)
-        }
-    }
-
     fun removeHorizontalSeam(seam: MutableList<Node>) {
         val newImage = BufferedImage(image.width, image.height - 1, BufferedImage.TYPE_INT_RGB)
-        var newx = 0
-        for (oldx in 0 until image.width) {
+        for ((newx, oldx) in (0 until image.width).withIndex()) {
             var newy = 0
             for (oldy in 0 until image.height) {
                 if (Node(oldx, oldy) in seam) continue
@@ -167,15 +159,13 @@ class Photo(var image: BufferedImage) {
                 newImage.setRGB(newx, newy, color)
                 newy++
             }
-            newx++
         }
         image = newImage
     }
 
     fun removeVerticalSeam(seam: MutableList<Node>) {
         val newImage = BufferedImage(image.width - 1, image.height, BufferedImage.TYPE_INT_RGB)
-        var newy = 0
-        for (oldy in 0 until image.height) {
+        for ((newy, oldy) in (0 until image.height).withIndex()) {
             var newx = 0
             for (oldx in 0 until image.width) {
                 if (Node(oldx, oldy) in seam) continue
@@ -183,7 +173,6 @@ class Photo(var image: BufferedImage) {
                 newImage.setRGB(newx, newy, color)
                 newx++
             }
-            newy++
         }
         image = newImage
     }
@@ -224,14 +213,14 @@ fun seamCarving(image: BufferedImage, vertical: Boolean): BufferedImage {
     photoNodes.addEmptyRows()
     photoNodes.findDistances()
     val seam = photoNodes.findSeam()
+	
     if (vertical) photoNodes.removeVerticalSeam(seam)
     else photoNodes.removeHorizontalSeam(seam)
+	
     return photoNodes.returnImage()
 }
 
 fun main(args: Array<String>) {
-    //val path = System.getProperty("user.dir")
-    //println("Working Directory = $path")
     val inputPath: String = args[1]
     val outputPath: String = args[3]
     val verticalSeams = args[5].toInt()
