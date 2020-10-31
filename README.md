@@ -21,7 +21,7 @@ I've got to know a lot of basic features of Kotlin - developing search engine in
 This project is focused on manipulating images with the use of Kotlin. It is based on Node and Photo classes, finds the lowest energy seam (line from the edge to edge on the other side of a picture) using implemented Dijkstra algorithm and deletes a given amount of horizontal and vertical seams, trimming the image. Finishing it needed a lot of research about Kotlin by myself.
 
 ## Screenshots
-> [Seam Carving]
+> [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt) 
 ![Before](./img/trees.png)
 ![After](./img/trees-reduced.png)
 
