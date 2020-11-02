@@ -1,10 +1,10 @@
 # JetBrains projects
-> These are my JetBrains Academy projects from Kotlin Developer track, which I started in June 2020. All started and finished projects are put here.
+> These are my JetBrains Academy projects from Kotlin Developer track, which I started in June 2020. All started and finished projects are here.
 
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
-* [Technologies](#technologies)
+* [Technologies used](#technologies-used)
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
@@ -20,13 +20,20 @@ I've got to know a lot of basic features of Kotlin - developing search engine in
 
 This project is focused on manipulating images with the use of Kotlin. It is based on Node and Photo classes, finds the lowest energy seam (line from the edge to edge on the other side of a picture) using implemented Dijkstra algorithm and deletes a given amount of horizontal and vertical seams, trimming the image. Finishing it needed a lot of research about Kotlin by myself.
 
+> [Flashcards](https://hyperskill.org/projects/83?track=3) (flashcards.kt) (difficulty level: Challenging)
+
+The point of this piece of code is to improve learning abilities by implement the idea behind flashcards (cards that with word on one side and definition on the other side) straight to the computer.
+
 ## Screenshots
-> [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt) 
+> [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
+
 ![Before](./img/trees.png)
 ![After](./img/trees-reduced.png)
 
-## Technologies
-* Kotlin: version 1.3.72-release-468 (JRE 14.0.1+7)
+## Technologies used
+* Kotlin 1.3.72-release-468 
+* JVM: 14.0.1 (Oracle Corporation 14.0.1+7)
+* Gradle 6.6.1
 
 ## Setup
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
@@ -37,15 +44,19 @@ Main function of this piece of code takes as an argument String: source path to 
 
 Code can be run from command line with arguments: -in <relative input file path>, -out <relative output file path>, -width <vertical seams to delete> and -height <horizontal seams to delete>.
 
+> [Flashcards](https://hyperskill.org/projects/83?track=3) (flashcards.kt)
+
+Code can be run from command line without any arguments. All input is typed by used in console.
+
 ## Features
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
 
-* Read data from text file
-* Mapping single words to lines indexes where they are in text file
-* Simple user menu
-* Search options ALL (result must have all phrases from query), ANY (any word from query), NONE (cannot have words from query)
-* Printing results of search
-* Printing all available data
+* Read data from text file.
+* Mapping single words to lines indexes where they are in text file.
+* Simple user menu.
+* Search options ALL (result must have all phrases from query), ANY (any word from query), NONE (cannot have words from query).
+* Printing results of search.
+* Printing all available data.
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
 
@@ -55,12 +66,22 @@ Code can be run from command line with arguments: -in <relative input file path>
 * Finding seam of lowest sum of pixels energy to opposite side of image, using Priority Queue Dijkstra algotrithm implementation with empty top and bottom rows and image transposition.
 * Trimming the picture by given amount of vertical and horizontal lines.
 
+> [Flashcards](https://hyperskill.org/projects/83?track=3) (flashcards.kt)
+
+* Simple user menu.
+* Adding and removing cards from set (repetition and error-sensitive).
+* Importing and exporting cards to external file.
+* Asking user about definition of random card in set, and showing good definition or answer to given definition if needed.
+
 ## Status
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
 * Project is: _finished_
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
 * Project is: _finished_
+
+> [Flashcards](https://hyperskill.org/projects/83?track=3) (flashcards.kt)
+* Project is: _in progress_
 
 ## Inspiration
 Willingness to get to know another programming language and to find more challenging job, more amount of free time and JetBrains discount until the end of year (should I also mention that last two are result of COVID?).
