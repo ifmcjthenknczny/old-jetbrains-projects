@@ -72,6 +72,8 @@ Code can be run from command line without any arguments. All input is typed by u
 * Adding and removing cards from set (repetition and error-sensitive).
 * Importing and exporting cards to external file.
 * Asking user about definition of random card in set, and showing good definition or answer to given definition if needed.
+* Tracking log of all input and output in program with possibility of exporting it.
+* Tracking user mistakes, showing hardest card when prompted along with possibility of resetting stats function.
 
 ## Status
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
