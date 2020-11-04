@@ -1,6 +1,7 @@
 package flashcards
 
 import java.io.File
+import java.io.FileNotFoundException
 import kotlin.random.Random
 
 
@@ -42,10 +43,9 @@ class SetOfCards {
         return false
     }
 
-    private fun importCards(): Boolean {
-        printAndSaveOutput("File name:")
+    fun importCards(fileName: String): Boolean {
         try {
-            val cards = File(readAndSaveInput()).readLines()
+            val cards = File(fileName).readLines()
             for (entry in cards) {
                 val term = entry.split(":")[0]
                 val definition = entry.split(":")[1]
@@ -53,33 +53,31 @@ class SetOfCards {
                 deck[term] = definition
                 if (errorNumber > 0) errors[term] = errorNumber
             }
-            printAndSaveOutput("${cards.size} cards have been loaded")
-        } catch (e: Exception) {
+            printAndSaveOutput("${cards.size} cards have been loaded.")
+        } catch (e: FileNotFoundException) {
             printAndSaveOutput("File not found.")
             return false
         }
         return true
     }
 
-    private fun exportCards(): Boolean {
-        printAndSaveOutput("File name:")
-        val myFile = File(readAndSaveInput())
+    fun exportCards(fileName: String): Boolean {
+        val myFile = File(fileName)
         myFile.writeText("")
         for ((term, definition) in deck) {
             myFile.appendText("$term:$definition:")
             if (errors.containsKey(term)) myFile.appendText("${errors[term].toString()}\n")
             else myFile.appendText("0\n")
         }
-        printAndSaveOutput("${deck.size} cards have been saved")
+        printAndSaveOutput("${deck.size} cards have been saved.")
         return true
     }
 
     private fun askMe() {
         printAndSaveOutput("How many times to ask?")
         val howMany = readAndSaveInput().toInt()
-        var counter = 0
         val terms = deck.keys.toList()
-        while (counter < howMany) {
+        repeat(howMany) {
             val random = Random.nextInt(0, terms.size)
             val term = terms[random]
             printAndSaveOutput("Print the definition of \"$term\":")
@@ -98,7 +96,6 @@ class SetOfCards {
                     printAndSaveOutput("Wrong. The right answer is \"${deck[term]}\".")
                 }
             }
-            counter += 1
         }
     }
 
@@ -161,8 +158,14 @@ class SetOfCards {
             when (action.toLowerCase()) {
                 "add" -> addCard()
                 "remove" -> removeCard()
-                "import" -> importCards()
-                "export" -> exportCards()
+                "import" -> {
+                    printAndSaveOutput("File name:")
+                    importCards(readAndSaveInput())
+                }
+                "export" -> {
+                    printAndSaveOutput("File name:")
+                    exportCards(readAndSaveInput())
+                }
                 "ask" -> askMe()
                 "exit" -> {
                     printAndSaveOutput("Bye bye!")
@@ -185,7 +188,27 @@ fun getKeyFromValue(value: String, dict: MutableMap<String, String>): String {
     return ""
 }
 
-fun main() {
+fun getProperties(mainArgs: Array<String>): List<String?> {
+    var inputPath: String? = null
+    var outputPath: String? = null
+    var argIndex = 0
+    while (argIndex < mainArgs.size) {
+        when (mainArgs[argIndex]) {
+            "-import" -> inputPath = mainArgs[argIndex + 1]
+            "-export" -> outputPath = mainArgs[argIndex + 1]
+        }
+        argIndex++
+    }
+    return listOf(inputPath, outputPath)
+}
+
+fun main(args: Array<String>) {
     val flashDeck = SetOfCards()
+    val paths = getProperties(args)
+    val inputPath = paths.first()
+    val outputPath = paths.last()
+
+    if (inputPath != null) flashDeck.importCards(inputPath)
     flashDeck.userMenu()
+    if (outputPath != null) flashDeck.exportCards(outputPath)
 }

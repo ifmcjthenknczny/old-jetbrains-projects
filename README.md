@@ -42,11 +42,11 @@ Main function of this piece of code takes as an argument String: source path to 
 
 > [Seam Carving](https://hyperskill.org/projects/100?track=3) (seamCarving.kt)
 
-Code can be run from command line with arguments: -in <relative input file path>, -out <relative output file path>, -width <vertical seams to delete> and -height <horizontal seams to delete>.
+Code can be run from command line with necessary arguments: -in <relative input file path>, -out <relative output file path>, -width <vertical seams to delete> and -height <horizontal seams to delete>.
 
 > [Flashcards](https://hyperskill.org/projects/83?track=3) (flashcards.kt)
 
-Code can be run from command line without any arguments. All input is typed by used in console.
+Code can be run from command line with optional arguments -import <filename with cards to import> and -export <filename to export cards>. All input is typed by used in console.
 
 ## Features
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
@@ -74,6 +74,7 @@ Code can be run from command line without any arguments. All input is typed by u
 * Asking user about definition of random card in set, and showing good definition or answer to given definition if needed.
 * Tracking log of all input and output in program with possibility of exporting it.
 * Tracking user mistakes, showing hardest card when prompted along with possibility of resetting stats function.
+* Optional command line arguments -import (filename to import cards at the beginning of program) and -export (filename to export card to after program ends).
 
 ## Status
 > [Simple Search Engine](https://hyperskill.org/projects/89?track=3) (simpleSearchEngine.kt)
@@ -83,7 +84,7 @@ Code can be run from command line without any arguments. All input is typed by u
 * Project is: _finished_
 
 > [Flashcards](https://hyperskill.org/projects/83?track=3) (flashcards.kt)
-* Project is: _in progress_
+* Project is: _finished_
 
 ## Inspiration
 Willingness to get to know another programming language and to find more challenging job, more amount of free time and JetBrains discount until the end of year (should I also mention that last two are result of COVID?).
