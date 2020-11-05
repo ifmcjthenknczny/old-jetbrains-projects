@@ -13,13 +13,13 @@ class SetOfCards {
 
     private fun addCard(): Boolean {
         printAndSaveOutput("The card:")
-        val term = readAndSaveInput()
+        val term = readAndSaveInput().toLowerCase()
         if (deck.containsKey(term)) {
             printAndSaveOutput("The card \"$term\" already exists.")
             return false
         }
         printAndSaveOutput("The definition of the card:")
-        val definition = readAndSaveInput()
+        val definition = readAndSaveInput().toLowerCase()
         if (deck.containsValue(definition)) {
             printAndSaveOutput("The definition \"$definition\" already exists.")
             return false
@@ -47,8 +47,8 @@ class SetOfCards {
         try {
             val cards = File(fileName).readLines()
             for (entry in cards) {
-                val term = entry.split(":")[0]
-                val definition = entry.split(":")[1]
+                val term = entry.split(":")[0].toLowerCase()
+                val definition = entry.split(":")[1].toLowerCase()
                 val errorNumber = entry.split(":")[2].toInt()
                 deck[term] = definition
                 if (errorNumber > 0) errors[term] = errorNumber
@@ -81,7 +81,7 @@ class SetOfCards {
             val random = Random.nextInt(0, terms.size)
             val term = terms[random]
             printAndSaveOutput("Print the definition of \"$term\":")
-            val userDefinition = readAndSaveInput()
+            val userDefinition = readAndSaveInput().toLowerCase()
             when {
                 userDefinition == deck[term] -> {
                     printAndSaveOutput("Correct!")
@@ -113,7 +113,7 @@ class SetOfCards {
     }
 
     private fun addError(term: String) {
-        errors[term] = errors.getOrDefault(term, 0) + 1
+        errors[term.toLowerCase()] = errors.getOrDefault(term.toLowerCase(), 0) + 1
     }
 
     private fun saveLog(): Boolean {
