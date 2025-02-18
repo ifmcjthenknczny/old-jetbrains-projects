@@ -90,4 +90,4 @@ Code can be run from command line with optional arguments -import <filename with
 Willingness to get to know another programming language and to find more challenging job, more amount of free time and JetBrains discount until the end of year (should I also mention that last two are result of COVID?).
 
 ## Contact
-maciej.konieczny.1993@gmail.com, feel free to contact me.
+My name on github is (ifmcjthenknczny)[https://github.com/ifmcjthenknczny]. Feel free to contact me.
